@@ -6,6 +6,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import java.time.DayOfWeek;
+import java.util.ArrayList;
+import java.util.List;
 
 import static jakarta.persistence.EnumType.STRING;
 import static jakarta.persistence.GenerationType.IDENTITY;
@@ -49,6 +51,9 @@ public class Webtoon extends BaseTimeEntity{
     private boolean isNew = true;
 
     private int postCnt = 0;
+
+    @OneToMany(mappedBy = "webtoon")
+    private List<Post> posts = new ArrayList<>();
 
     @Builder
     public Webtoon(String title, String author, String content, String thumbnail, String keyword, Genre genre, DayOfWeek dayOfWeek) {
